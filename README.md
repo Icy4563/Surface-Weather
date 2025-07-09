@@ -7,4 +7,4 @@ This repo was created before intial completion, may take a while before V1 is up
 
 # Update:
 
-V1 is almost ready, will launch in the following days
+V1 is practically ready, but there have been some issues in packaging, not sure on ETA
