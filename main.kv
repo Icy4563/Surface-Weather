@@ -1,0 +1,2136 @@
+ScreenManager:
+    CurrentWeatherScreen:
+    ForecastWeatherScreen:
+    ErrorScreen:
+    HemisphereSelectScreen:
+    EmailInputScreen:
+    ThemeSelectScreen:
+    ColorSelectScreen:
+    CitySelectScreen:
+    AboutScreen:
+
+<AboutScreen@MDScreen>:
+    name: "AboutScreen"
+    md_bg_color: app.theme_cls.backgroundColor
+
+    MDFloatLayout:
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {'center_x': .06,'center_y': .94}
+            on_release: app.backButtonHandler()
+
+        MDLabel:
+            pos_hint: {'center_x': 0.5,'center_y': 0.825}
+            text: "About"
+            font_style: "urbanist"
+            role: "large"
+            adaptive_height: True
+            size_hint_x: 0.2
+
+        MDLabel:
+            pos_hint: {'center_x': 0.5,'center_y': 0.635}
+            text: "This is Surface Weather V1, a minimalistic, Material You inspired weather app, \nmade using Kivy, KivyMD and Python for Android and Windows"
+            font_style: "urbanistSMALL2"
+            role: "medium"
+            adaptive_height: True
+            size_hint_x: 0.7
+            halign: "center"
+
+        MDLabel:
+            pos_hint: {'center_x': 0.5,'center_y': 0.45}
+            text: "Weather Data is provided by MET Norway"
+            font_style: "urbanistSMALL2"
+            role: "large"
+            adaptive_height: True
+            size_hint_x: 0.4
+            halign: "center"
+
+        MDLabel:
+            pos_hint: {'center_x': 0.5,'center_y': 0.35}
+            text: "Geolocation Data is provided by IP-API"
+            font_style: "urbanistSMALL2"
+            role: "large"
+            adaptive_height: True
+            size_hint_x: 0.6
+            halign: "center"
+
+        MDLabel:
+            pos_hint: {'center_x': 0.5,'center_y': 0.25}
+            text: "The city database is provided by simplemaps"
+            font_style: "urbanistSMALL2"
+            role: "large"
+            adaptive_height: True
+            size_hint_x: 0.6
+            halign: "center"
+
+        MDLabel:
+            pos_hint: {'center_x': 0.5,'center_y': 0.15}
+            text: "The font used is Urbanist by Corey Hu"
+            font_style: "urbanistSMALL2"
+            role: "large"
+            adaptive_height: True
+            size_hint_x: 0.6
+            halign: "center"
+
+<CitySelectScreen@MDScreen>:
+    name: "CitySelectScreen"
+    md_bg_color: app.theme_cls.backgroundColor
+
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .85}
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .85}
+                size_hint_y: None
+                height: dp(800)
+                id: cityScroll
+
+                MDTextField:
+                    mode: "outlined"
+                    pos_hint: {'center_x': 0.5,'center_y': 0.8}
+                    size_hint: .765, .075
+                    on_focus: if not self.focus: app.searchCities(self.text)
+                    id: citySearchField
+
+                    MDTextFieldLeadingIcon:
+                        icon: "magnify"
+                    
+                    MDTextFieldHintText:
+                        text: "city"
+
+                MDFloatLayout:
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "large"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.7}
+                        id: cityone
+                        markup: True
+                        on_ref_press: app.citySelectedHandler(args[1])
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "medium"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.665}
+                        id: cityonedesc
+                        markup: True
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "large"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.6}
+                        id: citytwo
+                        markup: True
+                        on_ref_press: app.citySelectedHandler(args[1])
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "medium"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.565}
+                        markup: True
+                        id: citytwodesc
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "large"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.5}
+                        markup: True
+                        id: citythree
+                        on_ref_press: app.citySelectedHandler(args[1])
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        markup: True
+                        role: "medium"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.465}
+                        id: citythreedesc
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "large"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        markup: True
+                        pos_hint: {'center_x': 0.45,'center_y': 0.4}
+                        id: cityfour
+                        on_ref_press: app.citySelectedHandler(args[1])
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "medium"
+                        adaptive_height: True
+                        markup: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.365}
+                        id: cityfourdesc
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "large"
+                        adaptive_height: True
+                        markup: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.3}
+                        id: cityfive
+                        on_ref_press: app.citySelectedHandler(args[1])
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "medium"
+                        markup: True
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.265}
+                        id: cityfivedesc
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "large"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.2}
+                        id: citysix
+                        markup: True
+                        on_ref_press: app.citySelectedHandler(args[1])
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "medium"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        markup: True
+                        pos_hint: {'center_x': 0.45,'center_y': 0.165}
+                        id: citysixdesc
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "large"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.1}
+                        markup: True
+                        id: cityseven
+                        on_ref_press: app.citySelectedHandler(args[1])
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "medium"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.065}
+                        markup: True
+                        id: citysevendesc
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        role: "large"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.065}
+                        id: cityeight
+                        markup: True
+                        on_ref_press: app.citySelectedHandler(args[1])
+
+                    MDLabel:
+                        text: ""
+                        font_style: "urbanistSMALL2"
+                        markup: True
+                        role: "medium"
+                        adaptive_height: True
+                        size_hint_x: .5
+                        pos_hint: {'center_x': 0.45,'center_y': 0.01}
+                        id: cityeightdesc
+
+
+<ThemeSelectScreen@MDScreen>:
+    name: "themeSelect"
+    md_bg_color: app.theme_cls.backgroundColor
+
+
+    MDFloatLayout:
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {'center_x': .06,'center_y': .94}
+            on_release: app.backButtonHandler()
+
+        MDLabel:
+            text: "Select the preferred theme:"
+            font_style: "urbanistSMALL"
+            role: "medium"
+            adaptive_height: True
+            size_hint_x: .5
+            pos_hint: {'center_x': 0.315,'center_y': 0.8775}
+
+        MDIconButton:
+            icon: "circle"
+            pos_hint: {'center_x': .24,'center_y': .78}
+            theme_icon_color: "Custom"
+            text_color: 0.1725490196, 0.1764705882, 0.1764705882, 0.9
+            theme_font_size: "Custom"
+            font_size: sp(42)
+            on_release: app.darkThemeHandler()
+            id: darkCirc
+
+        MDIconButton:
+            icon: "circle"
+            pos_hint: {'center_x': .345,'center_y': .78}
+            theme_icon_color: "Custom"
+            text_color: 0.9764705882, 0.9764705882, 0.9764705882, 0.9
+            theme_font_size: "Custom"
+            font_size: sp(42)
+            on_release: app.lightThemeHandler()
+            id: lightCirc
+
+
+<ColorSelectScreen@MDScreen>:
+    name: "colorSelect"
+    md_bg_color: app.theme_cls.backgroundColor
+
+
+    MDFloatLayout:
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {'center_x': .06,'center_y': .94}
+            on_release: app.backButtonHandler()
+
+        MDLabel:
+            text: "Select the preferred color scheme:"
+            font_style: "urbanistSMALL"
+            role: "medium"
+            adaptive_height: True
+            size_hint_x: .55
+            pos_hint: {'center_x': 0.3275,'center_y': 0.8775}
+
+        MDIconButton:
+            icon: "circle"
+            pos_hint: {'center_x': .24,'center_y': .78}
+            theme_icon_color: "Custom"
+            text_color: 0.4431372549, 0.4431372549, 0.4352941176, 0.9
+            theme_font_size: "Custom"
+            font_size: sp(42)
+            on_release: app.greySchemeHandler()
+            id: greyCirc
+
+        MDIconButton:
+            icon: "circle"
+            pos_hint: {'center_x': .3450,'center_y': .78}
+            theme_icon_color: "Custom"
+            text_color: 0.8196078431, 0.2745098039, 0.1725490196, 0.9
+            theme_font_size: "Custom"
+            font_size: sp(42)
+            on_release: app.redSchemeHandler()
+            id: redCirc
+
+        MDIconButton:
+            icon: "circle"
+            pos_hint: {'center_x': 0.4500,'center_y': .78}
+            theme_icon_color: "Custom"
+            text_color: 0.4647887324, 0.7215686275, 0.8156862745, 0.9
+            theme_font_size: "Custom"
+            font_size: sp(42)
+            on_release: app.blueSchemeHandler()
+            id: blueCirc
+
+        MDIconButton:
+            icon: "circle"
+            pos_hint: {'center_x': 0.5550,'center_y': .78}
+            theme_icon_color: "Custom"
+            text_color: 0.6313725490, 0.6470588235, 0.3372549020, 0.9
+            theme_font_size: "Custom"
+            font_size: sp(42)
+            on_release: app.greenSchemeHandler()
+            id: greenCirc
+
+        MDIconButton:
+            icon: "circle"
+            pos_hint: {'center_x': 0.6600,'center_y': .78}
+            theme_icon_color: "Custom"
+            text_color: 0.4, 0.3058823529, 0.5333333333, 0.9
+            theme_font_size: "Custom"
+            font_size: sp(42)
+            on_release: app.purpleSchemeHandler()
+            id: purpleCirc
+
+<ForecastWeatherScreen@MDScreen>:
+    name: "forecastWeatherScreen"
+    md_bg_color: app.theme_cls.backgroundColor
+
+
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+
+        MDFloatLayout:
+            pos_hint: {"center_x": .5, "center_y": 1}
+            size_hint_y: None
+            height: dp(1000)
+
+            MDIconButton:
+                icon: "cog"
+                pos_hint: {'center_x': 0.9365,'center_y': 0.975}
+                color: app.theme_cls.onSurfaceVariantColor
+                on_release: app.dropdownHandler()
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.onSurfaceVariantColor
+                id: settButton
+
+            MDCard:
+                style: "filled"
+                size_hint: .85, .1
+                pos_hint: {"center_x": .5, "center_y": .85}
+
+                MDFloatLayout:
+                    id: FloatLayoutOne
+
+                    MDLabel:
+                        text: "tomorrow"
+                        id: tmrTextStatic
+                        font_style: "urbanistSMALL"
+                        role: "medium"
+                        halign: "center"
+                        pos_hint: {"center_x": .12, "center_y": .7}
+                        size_hint: .5, .5
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .325, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: tomorrowWeatherIconHSix
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "06:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextTmrSix
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .55, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: tomorrowWeatherIconHTwelve
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "12:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextTmrTwelve
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .775, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: tomorrowWeatherIconHEighteen
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "18:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextTmrEighteen
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+            MDCard:
+                style: "filled"
+                size_hint: .85, .1
+                pos_hint: {"center_x": .5, "center_y": .725}
+
+                MDFloatLayout:
+                    id: FloatLayoutTwo
+
+                    MDLabel:
+                        id: followingDayOne
+                        text: "tomorrow"
+                        font_style: "urbanistSMALL"
+                        role: "medium"
+                        halign: "center"
+                        pos_hint: {"center_x": .08, "center_y": .7}
+                        size_hint: .5, .5
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .325, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: aftermorrowWeatherIconHSix
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "06:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftTmrSix
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .55, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: aftermorrowWeatherIconHTwelve
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "12:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftTmrTwelve
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .775, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: aftermorrowWeatherIconHEighteen
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "18:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftTmrEighteen
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+            MDCard:
+                style: "filled"
+                size_hint: .85, .1
+                pos_hint: {"center_x": .5, "center_y": .6}
+
+                MDFloatLayout:
+                    id: FloatLayoutThree
+
+                    MDLabel:
+                        id: followingDayTwo
+                        text: "tomorrow"
+                        font_style: "urbanistSMALL"
+                        role: "medium"
+                        halign: "center"
+                        pos_hint: {"center_x": .08, "center_y": .7}
+                        size_hint: .5, .5
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .325, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: afterTwomorrowWeatherIconHSix
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "06:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftTwoTmrSix
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .55, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: afterTwomorrowWeatherIconHTwelve
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "12:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftTwoTmrTwelve
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .775, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: afterTwomorrowWeatherIconHEighteen
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "18:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftTwoTmrEighteen
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+            MDCard:
+                style: "filled"
+                size_hint: .85, .1
+                pos_hint: {"center_x": .5, "center_y": .475}
+
+                MDFloatLayout:
+                    id: FloatLayoutFour
+
+                    MDLabel:
+                        id: followingDayThree
+                        text: "tomorrow"
+                        font_style: "urbanistSMALL"
+                        role: "medium"
+                        halign: "center"
+                        pos_hint: {"center_x": .08, "center_y": .7}
+                        size_hint: .5, .5
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .325, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: afterThreemorrowWeatherIconHSix
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "06:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftThreeTmrSix
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .55, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: afterThreemorrowWeatherIconHTwelve
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "12:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftThreeTmrTwelve
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .775, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: afterThreemorrowWeatherIconHEighteen
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "18:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftThreeTmrEighteen
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+            MDCard:
+                style: "filled"
+                size_hint: .85, .1
+                pos_hint: {"center_x": .5, "center_y": .35}
+
+                MDFloatLayout:
+                    id: FloatLayoutFive
+
+                    MDLabel:
+                        id: followingDayFour
+                        text: "tomorrow"
+                        font_style: "urbanistSMALL"
+                        role: "medium"
+                        halign: "center"
+                        pos_hint: {"center_x": .08, "center_y": .7}
+                        size_hint: .5, .5
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .325, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: afterFourmorrowWeatherIconHSix
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "06:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftFourTmrSix
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .55, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: afterFourmorrowWeatherIconHTwelve
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "12:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftFourTmrTwelve
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .2, .75
+                        pos_hint: {"center_x": .775, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: afterFourmorrowWeatherIconHEighteen
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(27)
+                                pos_hint: {"center_x": .5, "center_y": .775}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "18:00"
+                                font_style: "urbanistSMALL"
+                                role: "small"
+                                pos_hint: {"center_x": .5, "center_y": .145}
+                                adaptive_size: True
+
+                            MDLabel:
+                                text: "ding dong temperature"
+                                id: tempTextaftFourTmrEighteen
+                                font_style: "urbanistSMALL2"
+                                role: "large"
+                                pos_hint: {"center_x": .5, "center_y": .465}
+                                adaptive_size: True
+
+    MDSegmentedButton:
+        size_hint: 0.8, None
+        pos_hint: {'center_x': 0.5,'center_y': 0.1}
+        type: "large"
+    
+        MDSegmentedButtonItem:
+            value: "currentWeather"
+            on_active: app.tabSwitch(self, self.active)
+
+            MDSegmentButtonIcon:
+                icon: "clock"
+                color: app.theme_cls.onSurfaceVariantColor
+
+            MDSegmentButtonLabel:
+                text: "Current"
+
+        MDSegmentedButtonItem:
+            value: "forecastWeatherScreen"
+            on_active: app.tabSwitch(self, self.active)
+
+            MDSegmentButtonIcon:
+                icon: "calendar"
+                color: app.theme_cls.onSurfaceVariantColor
+
+            MDSegmentButtonLabel:
+                text: "Daily"
+
+
+<HemisphereSelectScreen@MDScreen>:
+    name: "hemisphereSelect"
+    md_bg_color: app.theme_cls.backgroundColor
+
+
+
+    MDCard:
+        style: "filled"
+        size_hint: .8, .6
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+        MDFloatLayout:
+
+            MDIcon:
+                icon: "compass-outline"
+                theme_font_size: "Custom"
+                font_size: sp(42)
+                pos_hint: {"center_x": .5, "center_y": .23}
+                color: app.theme_cls.onSurfaceVariantColor
+
+            MDFloatLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+                MDLabel:
+                    pos_hint: {'center_x': 0.5,'center_y': 0.8}
+                    adaptive_height: True
+                    size_hint_x: .7
+                    halign: "center"
+                    text: "please select your hemisphere,\nnecessary for handling UTC time offset"
+                    font_style: "urbanistSMALL"
+                    role: "medium"
+                    text_size: self.width, None
+                    color: app.theme_cls.onSurfaceVariantColor
+
+                MDLabel:
+                    pos_hint: {'center_x': 0.5,'center_y': 0.07}
+                    adaptive_height: True
+                    size_hint_x: .8
+                    text: "Tip: to reset settings, please clear app data, or delete the userOptions.json if available"
+                    font_style: "urbanistSMALL2"
+                    role: "medium"
+                    size_hint_x: .8
+                    color: app.theme_cls.onSurfaceVariantColor
+
+                MDSegmentedButton:
+                    pos_hint: {'center_x': 0.5,'center_y': 0.435}
+                    size_hint_x: 0.85
+
+                    MDSegmentedButtonItem:
+                        id: westernOption
+                        value: "western"
+                        on_active: app.onHemisphereSelected(self, self.active)
+                        MDSegmentButtonLabel:
+                            text: "Western"
+
+                    MDSegmentedButtonItem:
+                        id: easternOption
+                        value: "eastern"
+                        on_active: app.onHemisphereSelected(self, self.active)
+                        MDSegmentButtonLabel:
+                            text: "Eastern"
+
+    
+<EmailInputScreen@MDScreen>:
+    name: 'emailInput'
+    md_bg_color: app.theme_cls.backgroundColor
+
+
+    MDTextField:
+        mode: "outlined"
+        pos_hint: {'center_x': 0.5,'center_y': 0.6}
+        size_hint: .6, .1
+        on_focus: if not self.focus: app.optionsSaved(self.text)
+        id: email_input
+
+        MDTextFieldLeadingIcon:
+            icon: "email-outline"
+        
+        MDTextFieldHintText:
+            text: "email"
+
+        MDTextFieldHelperText:
+            text: "necessary for accessing the weather API"
+            mode: "persistent"
+
+    MDLabel:
+        pos_hint: {'center_x': 0.5,'center_y': 0.44}
+        text_size: self.width, None
+        color: app.theme_cls.onSurfaceVariantColor
+        halign: "center"
+        size_hint_x: .7
+        font_style: "urbanistSMALL"
+        role: "small"
+        text: "Note: the app does not check whether the email is correct.\nProlonged usage of an invalid email may lead to errors,\ntimeouts or even a ban from the API"
+
+<ErrorScreen@MDScreen>:
+    name: 'errorScreen'
+    md_bg_color: app.theme_cls.backgroundColor
+
+    MDCard:
+        style: "filled"
+        pos_hint: {'center_x': .5,'center_y': .5}
+        color: app.theme_cls.onErrorContainerColor
+        size_hint: .85, .5
+
+        MDFloatLayout:
+
+            MDLabel:
+                text: "Failed to connect to weather and location APIs"
+                adaptive_size: True
+                font_style: "urbanist"
+                role: "small"
+                pos_hint: {'center_x': .5,'center_y': .5}
+                size_hint: .5, .5
+                halign: "center"
+
+            MDIcon:
+                icon: "alert-circle-outline"
+                theme_font_size: "Custom"
+                font_size: sp(48)
+                pos_hint: {"center_x": .495, "center_y": .25}
+                color: app.theme_cls.onSurfaceVariantColor
+
+<CurrentWeatherScreen@MDScreen>:
+    name: 'currentWeather'
+    md_bg_color: app.theme_cls.backgroundColor
+
+
+    FloatLayout:
+        pos_hint: {"center_x": .49475, "center_y": .4695}
+
+        # Today's forecast card
+        MDCard:
+            id: forecastCard
+            style: "filled"
+            size_hint: .9621, .25
+            pos_hint: {"center_x": .506, "center_y": .525}
+
+            ScrollView:
+                do_scroll_x: True
+                do_scroll_y: False
+                id: todayScroll
+
+                MDFloatLayout:
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    size_hint_x: None
+                    width: dp(2700)
+
+                    #group 1
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .03, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "00:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+                                id: hourZero
+
+                            MDIcon:
+                                id: zerozeroWeatherIcon
+                                icon: "weather-night"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextZero
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .07, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "01:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+                                id: hourOne
+
+                            MDIcon:
+                                id: zerooneWeatherIcon
+                                icon: "weather-night"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextTwo
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .11, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "02:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+                                id: hourTwo
+
+                            MDIcon:
+                                id: zerotwoWeatherIcon
+                                icon: "weather-night"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextThree
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .15, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "03:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+                                id: hourThree
+
+                            MDIcon:
+                                id: zerothreeWeatherIcon
+                                icon: "weather-night"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextFour
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .19, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "04:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+                                id: hourFour
+                            
+                            MDIcon:
+                                id: zerofourWeatherIcon
+                                icon: "weather-night"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextFive
+                                text: "dong ding temp"
+
+                    #group 2   
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .23, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "05:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+                                id: hourFive
+
+                            MDIcon:
+                                id: zerofiveWeatherIcon
+                                icon: "weather-night"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextSix
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .27, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "06:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+                                id: hourSix
+
+                            MDIcon:
+                                id: zerosixWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextSeven
+                                text: "dong ding temp"
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .31, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "07:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+                                id: hourSeven
+
+                            MDIcon:
+                                id: zerosevenWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextEight
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .35, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "08:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zeroeightWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextNine
+                                text: "dong ding temp"
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .39, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "09:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zeronineWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextTen
+                                text: "dong ding temp"
+
+                    #group 3    
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .43, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "10:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zerotenWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextEleven
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .47, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "11:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zeroelevenWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextTwelve
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .51, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "12:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zerotwelveWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextThirteen
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .55, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "13:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zerothirteenWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextFourteen
+                                text: "dong ding temp"
+
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .59, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "14:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zerofourteenWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextFifteen
+                                text: "dong ding temp"
+
+
+                    #group 4   
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .63, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "15:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zerofifteenWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextSixteen
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .67, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "16:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zerosixteenWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextSeventeen
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .71, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "17:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zeroseventennWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextEighteen
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .75, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "18:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zeroeightennWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextNinteen
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .79, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "19:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zeroninteenWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextTwenty
+                                text: "dong ding temp"
+
+                    #group 5    
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .83, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "20:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zerotwentyWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextTwentyOne
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .87, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "21:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zerotwentyoneWeatherIcon
+                                icon: "alert-circle-outline"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+                            
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextTwentyTwo
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .91, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDIcon:
+                                id: zerotwentytwoWeatherIcon
+                                icon: "weather-night"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                text: "22:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextTwentyThree
+                                text: "dong ding temp"
+
+                    MDCard:
+                        style: "outlined"
+                        size_hint: .03, .8
+                        pos_hint: {"center_x": .95, "center_y": .5}
+
+                        MDFloatLayout:
+
+                            MDLabel:
+                                text: "23:00"
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .825}
+                                size_hint: .5, .5
+
+                            MDIcon:
+                                id: zerotwentythreeWeatherIcon
+                                icon: "weather-night"
+                                theme_font_size: "Custom"
+                                font_size: sp(26)
+                                pos_hint: {"center_x": .5, "center_y": .63}
+                                color: app.theme_cls.onSurfaceVariantColor
+
+                            MDLabel:
+                                font_style: "urbanistSMALL2"
+                                role: "medium"
+                                halign: "center"
+                                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                                id: tempTextTwentyFour
+                                text: "dong ding temp"
+
+
+        #humidity card
+        MDCard:
+            id: humidityCard
+            style: "outlined"
+            size_hint: .3, .135
+            pos_hint: {"center_x": .645, "center_y": .902}
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .5}
+                orientation: "horizontal"
+
+                MDLabel:
+                    id: humidityText
+                    text: "ding dong humidity"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    font_style: "urbanist"
+                    role: "small"
+                    adaptive_size: True
+                    color: app.theme_cls.onSurfaceVariantColor
+
+                MDFloatLayout:
+                    pos_hint: {"center_x": .485, "center_y": .5}
+                    orientation: "horizontal"
+
+                    MDIcon:
+                        id: humIcon
+                        icon: "water-outline"
+                        pos_hint: {"center_x": .1, "center_y": .785}
+                        color: app.theme_cls.onSurfaceVariantColor
+
+                    MDLabel:
+                        id: staticHumText
+                        text: "humidity"
+                        pos_hint: {"center_x": .235, "center_y": .79}
+                        font_style: "urbanistSMALL"
+                        role: "small"
+                        adaptive_size: True
+                        color: app.theme_cls.onSurfaceVariantColor
+
+        #Cloud cover card
+        MDCard:
+            id: cloudCard
+            style: "outlined"
+            size_hint: .3, .135
+            pos_hint: {"center_x": .645, "center_y": .745}
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .5}
+
+                MDLabel:
+                    id: cloudCoverText
+                    text: "ding dong clouds"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    font_style: "urbanist"
+                    role: "small"
+                    adaptive_size: True
+                    color: app.theme_cls.onSurfaceVariantColor
+
+                MDFloatLayout:
+                    pos_hint: {"center_x": .485, "center_y": .515}
+                    orientation: "horizontal"
+
+                    MDIcon:
+                        id: cloudIcon
+                        icon: "weather-cloudy"
+                        pos_hint: {"center_x": .1, "center_y": .785}
+                        color: app.theme_cls.onSurfaceVariantColor
+
+                    MDLabel:
+                        id: staticCloudText
+                        text: "cloud cover"
+                        pos_hint: {"center_x": .2885, "center_y": .79}
+                        font_style: "urbanistSMALL"
+                        role: "small"
+                        adaptive_size: True
+                        color: app.theme_cls.onSurfaceVariantColor
+
+        #wind card            
+        MDCard:
+            id: windCard
+            style: "outlined"
+            size_hint: .17575, .291
+            pos_hint: {"center_x": .9, "center_y": .825}
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .5}
+                MDIcon:
+                    id: windIcon
+                    icon: "weather-windy"
+                    pos_hint: {"center_x": .125, "center_y": .885}
+                    color: app.theme_cls.onSurfaceVariantColor
+
+                MDLabel:
+                    id: windSpeedText
+                    text: "ding dong clouds"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    font_style: "urbanist"
+                    role: "small"
+                    adaptive_size: True
+                    halign: "center"
+                    color: app.theme_cls.onSurfaceVariantColor
+
+                MDLabel:
+                    id: staticWindText
+                    text: "wind speed"
+                    pos_hint: {"center_x": .5, "center_y": .885}
+                    font_style: "urbanistSMALL"
+                    role: "small"
+                    adaptive_size: True
+                    color: app.theme_cls.onSurfaceVariantColor
+
+        #rain amount card
+        MDCard:
+            id: rainCard
+            style: "outlined"
+            pos_hint: {"center_x": .26, "center_y": .305}
+            size_hint: 0.47, .15
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .5}
+
+                MDLabel:
+                    font_style: "urbanist"
+                    role: "medium"
+                    id: rainAmountText
+                    text: "ding dong rain amount"
+                    adaptive_size: True
+                    color: app.theme_cls.onSurfaceVariantColor
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+                MDIcon:
+                    id: rainIconStatic
+                    icon: "weather-rainy"
+                    pos_hint: {"center_x": .0685, "center_y": .82}
+                    color: app.theme_cls.onSurfaceVariantColor
+
+                MDLabel:
+                    text: "rain quantity"
+                    id: staticRainText
+                    pos_hint: {"center_x": .195, "center_y": .8235}
+                    font_style: "urbanistSMALL"
+                    role: "small"
+                    adaptive_size: True
+                    color: app.theme_cls.onSurfaceVariantColor
+
+        #date and time card            
+        MDCard:
+            id: timeCard
+            style: "filled"
+            pos_hint: {"center_x": .7525, "center_y": 0.305}
+            size_hint: .47, .15
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .5}
+
+                MDLabel:
+                    font_style: "urbanist"
+                    role: "medium"
+                    id: timeText
+                    text: "ding dong time"
+                    adaptive_size: True
+                    color: app.theme_cls.onSurfaceVariantColor
+                    pos_hint: {"center_x": .1665, "center_y": .5}
+
+                MDLabel:
+                    font_style: "urbanistSMALL"
+                    role: "medium"
+                    id: dateText
+                    text: "ding dong date"
+                    adaptive_size: True
+                    color: app.theme_cls.onSurfaceVariantColor
+                    pos_hint: {"center_x": .645, "center_y": .415}
+
+        #current weather card
+        MDCard:
+            id: currentWeatherCard
+            style: "filled"
+            pos_hint: {"center_x": .25, "center_y": .825}
+            size_hint: .45, .3
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .5}
+
+                MDLabel:
+                    id: cityText
+                    text: "ding dong city"
+                    pos_hint: {"center_x": .5, "center_y": 0.85}
+                    font_style: "urbanist"
+                    role: "small"
+                    size_hint_x: None
+                    adaptive_size: True
+                    halign: "center"
+                    on_ref_press: app.citychanger(*args)
+                    markup: True
+                    color: app.theme_cls.onSurfaceVariantColor
+
+                MDLabel:
+                    id: generalWeatherText
+                    text: "ding dong weather"
+                    pos_hint: {"center_x": .5, "center_y": .15}
+                    font_style: "urbanist"
+                    role: "small"
+                    size_hint_x: None
+                    adaptive_size:True
+                    halign: "center"
+                    color: app.theme_cls.onSurfaceVariantColor
+
+                MDFloatLayout:
+                    pos_hint: {"center_x": .55, "center_y": .61}
+
+                    MDLabel:
+                        id: tempText
+                        text: "ding dong temperature"
+                        pos_hint: {"center_x": .4, "center_y": .4}
+                        font_style: "urbanist"
+                        role: "medium"
+                        size_hint_x: None
+                        adaptive_size:True
+                        halign: "center"
+                        color: app.theme_cls.onSurfaceVariantColor
+
+                    MDIcon:
+                        id: currentWeatherIcon
+                        icon: "alert-circle-outline"
+                        theme_font_size: "Custom"
+                        font_size: sp(42)
+                        pos_hint: {"center_x": .585, "center_y": .395}
+                        color: app.theme_cls.onSurfaceVariantColor
+
+    #navigation bar
+    MDSegmentedButton:
+        size_hint: 0.8, None
+        pos_hint: {'center_x': 0.5,'center_y': 0.095}
+        type: "large"
+    
+        MDSegmentedButtonItem:
+            value: "currentWeather"
+            on_active: app.tabSwitch(self, self.active)
+
+            MDSegmentButtonIcon:
+                icon: "clock"
+                color: app.theme_cls.onSurfaceVariantColor
+
+            MDSegmentButtonLabel:
+                text: "Current"
+
+        MDSegmentedButtonItem:
+            value: "forecastWeatherScreen"
+            on_active: app.tabSwitch(self, self.active)
+
+            MDSegmentButtonIcon:
+                icon: "calendar"
+                color: app.theme_cls.onSurfaceVariantColor
+
+            MDSegmentButtonLabel:
+                text: "Daily"
