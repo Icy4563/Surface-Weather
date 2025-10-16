@@ -21,6 +21,15 @@ The app uses MET Norway for weather data (updates once on boot), the simplemaps 
 
 ===========================
 
+# Changelog:
+
+# v1.1:
+Edited scaling code, widget layout switching should now be more consistent. Utilities have been moved to a seperate file
+
+# v1:
+first release
+
+===========================
 # Screenshots:
 
 <img width="2160" height="1856" alt="Unfolded Light Main Landscape" src="https://github.com/user-attachments/assets/2604fffd-f0b0-4cc5-8367-331c8f61ca2f" />
