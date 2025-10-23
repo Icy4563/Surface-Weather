@@ -23,6 +23,9 @@ The app uses MET Norway for weather data (updates once on boot), the simplemaps 
 
 # Changelog:
 
+# v1.3:
+Added a new navbar, placed current weather in a BoxLayout for more consistency
+
 # v1.1:
 Edited scaling code, widget layout switching should now be more consistent. Utilities have been moved to a seperate file
 
