@@ -1,13 +1,38 @@
-ScreenManager:
-    CurrentWeatherScreen:
-    ForecastWeatherScreen:
-    ErrorScreen:
-    HemisphereSelectScreen:
-    EmailInputScreen:
-    ThemeSelectScreen:
-    ColorSelectScreen:
-    CitySelectScreen:
-    AboutScreen:
+<RootElement>:
+    orientation: "vertical"
+
+    ScreenManager:
+        id: sm
+        CurrentWeatherScreen:
+        ForecastWeatherScreen:
+        ErrorScreen:
+        HemisphereSelectScreen:
+        EmailInputScreen:
+        ThemeSelectScreen:
+        ColorSelectScreen:
+        CitySelectScreen:
+        AboutScreen:
+
+    MDNavigationBar:
+        on_switch_tabs: app.navBarHandler(*args)
+
+
+        MDNavigationItem:
+
+            MDNavigationItemIcon:
+                icon: "clock"
+            
+            MDNavigationItemLabel:
+                text: "Current"
+
+        MDNavigationItem:
+
+            MDNavigationItemIcon:
+                icon: "calendar"
+
+            MDNavigationItemLabel:
+                text: "Daily"
+
 
 <AboutScreen@MDScreen>:
     name: "AboutScreen"
@@ -424,7 +449,7 @@ ScreenManager:
                         role: "medium"
                         halign: "center"
                         pos_hint: {"center_x": .12, "center_y": .7}
-                        size_hint: .5, .5
+                        size_hint: 1, .5
 
                     MDCard:
                         style: "outlined"
@@ -531,7 +556,7 @@ ScreenManager:
                         role: "medium"
                         halign: "center"
                         pos_hint: {"center_x": .08, "center_y": .7}
-                        size_hint: .5, .5
+                        size_hint: 1, .5
 
                     MDCard:
                         style: "outlined"
@@ -638,7 +663,7 @@ ScreenManager:
                         role: "medium"
                         halign: "center"
                         pos_hint: {"center_x": .08, "center_y": .7}
-                        size_hint: .5, .5
+                        size_hint: 1, .5
 
                     MDCard:
                         style: "outlined"
@@ -745,7 +770,7 @@ ScreenManager:
                         role: "medium"
                         halign: "center"
                         pos_hint: {"center_x": .08, "center_y": .7}
-                        size_hint: .5, .5
+                        size_hint: 1, .5
 
                     MDCard:
                         style: "outlined"
@@ -852,7 +877,7 @@ ScreenManager:
                         role: "medium"
                         halign: "center"
                         pos_hint: {"center_x": .08, "center_y": .7}
-                        size_hint: .5, .5
+                        size_hint: 1, .5
 
                     MDCard:
                         style: "outlined"
@@ -944,34 +969,7 @@ ScreenManager:
                                 pos_hint: {"center_x": .5, "center_y": .465}
                                 adaptive_size: True
 
-    MDSegmentedButton:
-        size_hint: 0.8, None
-        pos_hint: {'center_x': 0.5,'center_y': 0.1}
-        type: "large"
     
-        MDSegmentedButtonItem:
-            value: "currentWeather"
-            on_active: app.tabSwitch(self, self.active)
-
-            MDSegmentButtonIcon:
-                icon: "clock"
-                color: app.theme_cls.onSurfaceVariantColor
-
-            MDSegmentButtonLabel:
-                text: "Current"
-
-        MDSegmentedButtonItem:
-            value: "forecastWeatherScreen"
-            on_active: app.tabSwitch(self, self.active)
-
-            MDSegmentButtonIcon:
-                icon: "calendar"
-                color: app.theme_cls.onSurfaceVariantColor
-
-            MDSegmentButtonLabel:
-                text: "Daily"
-
-
 <HemisphereSelectScreen@MDScreen>:
     name: "hemisphereSelect"
     md_bg_color: app.theme_cls.backgroundColor
@@ -1085,7 +1083,7 @@ ScreenManager:
                 font_style: "urbanist"
                 role: "small"
                 pos_hint: {'center_x': .5,'center_y': .5}
-                size_hint: .5, .5
+                size_hint: 1, .5
                 halign: "center"
 
             MDIcon:
@@ -1134,7 +1132,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
                                 id: hourZero
 
                             MDIcon:
@@ -1166,7 +1164,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
                                 id: hourOne
 
                             MDIcon:
@@ -1198,7 +1196,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
                                 id: hourTwo
 
                             MDIcon:
@@ -1230,7 +1228,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
                                 id: hourThree
 
                             MDIcon:
@@ -1262,7 +1260,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
                                 id: hourFour
                             
                             MDIcon:
@@ -1295,7 +1293,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
                                 id: hourFive
 
                             MDIcon:
@@ -1327,7 +1325,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
                                 id: hourSix
 
                             MDIcon:
@@ -1358,7 +1356,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
                                 id: hourSeven
 
                             MDIcon:
@@ -1390,7 +1388,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zeroeightWeatherIcon
@@ -1420,7 +1418,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zeronineWeatherIcon
@@ -1452,7 +1450,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zerotenWeatherIcon
@@ -1483,7 +1481,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zeroelevenWeatherIcon
@@ -1514,7 +1512,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zerotwelveWeatherIcon
@@ -1545,7 +1543,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zerothirteenWeatherIcon
@@ -1577,7 +1575,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zerofourteenWeatherIcon
@@ -1610,7 +1608,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zerofifteenWeatherIcon
@@ -1641,7 +1639,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zerosixteenWeatherIcon
@@ -1672,7 +1670,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zeroseventennWeatherIcon
@@ -1703,7 +1701,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zeroeightennWeatherIcon
@@ -1734,7 +1732,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zeroninteenWeatherIcon
@@ -1766,7 +1764,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zerotwentyWeatherIcon
@@ -1797,7 +1795,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zerotwentyoneWeatherIcon
@@ -1836,7 +1834,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDLabel:
                                 font_style: "urbanistSMALL2"
@@ -1859,7 +1857,7 @@ ScreenManager:
                                 role: "medium"
                                 halign: "center"
                                 pos_hint: {"center_x": .5, "center_y": .825}
-                                size_hint: .5, .5
+                                size_hint: 1, .5
 
                             MDIcon:
                                 id: zerotwentythreeWeatherIcon
@@ -2085,8 +2083,10 @@ ScreenManager:
                     halign: "center"
                     color: app.theme_cls.onSurfaceVariantColor
 
-                MDFloatLayout:
-                    pos_hint: {"center_x": .55, "center_y": .61}
+                MDBoxLayout:
+                    pos_hint: {"center_x": .85, "center_y": .61}
+                    orientation: "horizontal"
+                    spacing: dp(5)
 
                     MDLabel:
                         id: tempText
@@ -2107,30 +2107,4 @@ ScreenManager:
                         pos_hint: {"center_x": .585, "center_y": .395}
                         color: app.theme_cls.onSurfaceVariantColor
 
-    #navigation bar
-    MDSegmentedButton:
-        size_hint: 0.8, None
-        pos_hint: {'center_x': 0.5,'center_y': 0.095}
-        type: "large"
-    
-        MDSegmentedButtonItem:
-            value: "currentWeather"
-            on_active: app.tabSwitch(self, self.active)
-
-            MDSegmentButtonIcon:
-                icon: "clock"
-                color: app.theme_cls.onSurfaceVariantColor
-
-            MDSegmentButtonLabel:
-                text: "Current"
-
-        MDSegmentedButtonItem:
-            value: "forecastWeatherScreen"
-            on_active: app.tabSwitch(self, self.active)
-
-            MDSegmentButtonIcon:
-                icon: "calendar"
-                color: app.theme_cls.onSurfaceVariantColor
-
-            MDSegmentButtonLabel:
-                text: "Daily"
+RootElement:
